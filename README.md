@@ -1,10 +1,11 @@
-## Homework | Week 3
+# Homework | Week 3
+
 `Not: Ödevi yeni bir repoya ekleyeceksiniz. Var olan reponuzda bir güncelleme olmayacak. "homework-2..." şeklinde yeni bir repo üzerinde çalışacaksınız.`
 
-
-Elimizde bir kitap listesi var. 
+Elimizde bir kitap listesi var.
 Kitap alanları şöyle;
-```
+
+```dash
 - Kitap ID
 - Kitap Adı
 - Sayfa Sayısı
@@ -21,42 +22,46 @@ Kitap alanları şöyle;
 4. IDsi verilen kitabı sil. (Silinen kitabın ID'ye göre geliyor olması gerekiyor.)
 5. IDsi verilen kitabı istenilen adet kadar satın al ve kitabın son bilgilerini ekrana yazdır.
 
-Yanlış komut girildiğinde ekrana usage'ı yazdıracak. 
+Yanlış komut girildiğinde ekrana usage'ı yazdıracak.
 
+Concurrency ile ilgili medium yazısı yazılacak.
 
-Concurrency ile ilgili medium yazısı yazılacak. 
+## list command
 
-### list command
-```
+```go
 go run main.go list
 ```
 
-### search command 
-```
+### search command
+
+```go
 go run main.go search <bookName>
 go run main.go search Lord of the Ring: The Return of the King
 ```
 
 ### get command
-```
+
+```go
 go run main.go get <bookID>
 go run main.go get 5
 ```
 
 ### delete command
-```
+
+```go
 go run main.go delete <bookID>
 go run main.go delete 5
 ```
 
 ### buy command
-```
+
+```go
 go run main.go buy <bookID> <quantity>
 go run main.go buy 5 2
 ```
 
-###
-# Requirements:
+### Requirements
+
 - README
 - No third party package(s)
 - Everything should be in English (Comments, Function names, File names, etc.)
