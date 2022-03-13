@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strconv"
+	"strings"
 )
 
 type Books struct {
@@ -36,19 +38,40 @@ func main() {
 	switch command {
 	case "list":
 		list(data)
+	case "search":
+		searchTerm := strings.Join(os.Args[2:], " ")
+		fmt.Println(search(data, searchTerm))
+	case "get":
+		searchedBookId := os.Args[2]
+		fmt.Println(get(data, searchedBookId))
 	}
+}
+func get(data Books, bookId string) string{
+	id, err := strconv.Atoi(bookId)
+	if err != nil {
+		return ("String conversation error!")
+	}
+	for _, book := range data.Books {
+		if id == book.Id {
+			return book.Title
+		}
+	}
+	return "Given id is not valid"
+}
 
-	// for i := 0; i < len(data.Books); i++ {
-	// 	fmt.Println("Book ID: " + strconv.Itoa(data.Books[i].Id))
-	// 	fmt.Println("Book Title: " + data.Books[i].Title)
-	// 	fmt.Println("Book Page: " + strconv.Itoa(data.Books[i].Page))
-	// 	fmt.Println("Book Stock: " + strconv.Itoa(data.Books[i].Stock))
-	// 	fmt.Println("Book Price: " + data.Books[i].Price)
-	// 	fmt.Println("Book StockCode: " + strconv.Itoa(data.Books[i].StockCode))
-	// 	fmt.Println("Book Isbn: " + strconv.Itoa(data.Books[i].Isbn))
-	// 	fmt.Println("Book Author: " + data.Books[i].Author)
-	// 	fmt.Print("\n")
-	// }
+func search(data Books, searchTerm string) string {
+	var foundBooks []string
+	for _, book := range data.Books {
+		if strings.Contains(strings.ToLower(book.Title), strings.ToLower(searchTerm)) && book.StockCode == 1 {
+			foundBooks = append(foundBooks, book.Title)
+		}
+	}
+	if len(foundBooks) > 0 {
+		for _, found := range foundBooks {
+			return found
+		}
+	}
+	return "No books found"
 }
 
 func list(data Books) {

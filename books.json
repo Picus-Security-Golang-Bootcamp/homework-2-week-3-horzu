@@ -6,7 +6,7 @@
       "page": 209,
       "stock": 100,
       "price": "19.90",
-      "stockCode": 0,
+      "stockCode": 1,
       "ISBN": 9780435272463,
       "author": "0 - Chinua Achebe"
     },
@@ -26,7 +26,7 @@
       "page": 928,
       "stock": 300,
       "price": 29.9,
-      "stockCode": 2,
+      "stockCode": 1,
       "ISBN": 9788889352311,
       "author": "2 - Dante Alighieri"
     },
@@ -36,7 +36,7 @@
       "page": 226,
       "stock": 125,
       "price": 14.9,
-      "stockCode": 3,
+      "stockCode": 1,
       "ISBN": 9780192827609,
       "author": "3 - Jane Austen"
     },
@@ -46,7 +46,7 @@
       "page": 443,
       "stock": 60,
       "price": "24.90",
-      "stockCode": 4,
+      "stockCode": 1,
       "ISBN": 9780521327992,
       "author": "4 - Honoré de Balzac"
     }
