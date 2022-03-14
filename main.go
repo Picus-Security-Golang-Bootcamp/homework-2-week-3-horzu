@@ -18,7 +18,7 @@ type Book struct {
 	Title     string `json:"title"`
 	Page      int    `json:"page"`
 	Stock     int    `json:"stock"`
-	Price     string `json:"price"`
+	Price     float64 `json:"price"`
 	StockCode int    `json:"stockCode"`
 	Isbn      int    `json:"ISBN"`
 	Author    string `json:"author"`
@@ -44,8 +44,42 @@ func main() {
 	case "get":
 		searchedBookId := os.Args[2]
 		fmt.Println(get(data, searchedBookId))
+	case "delete":
+		bookId := os.Args[2]
+		fmt.Println(delete(data, bookId))
 	}
 }
+
+func (b *Book) setStockCode(stockCode int) *Book {
+	b.StockCode = stockCode
+	return b
+}
+
+// delete function removes given book from the available items list. It sets StockCode to 0, which means book is not available.
+func delete(data Books, bookId string) string{
+	id, err := strconv.Atoi(bookId)
+	if err != nil {
+		return ("String conversation error!")
+	}
+	for i, book := range data.Books {
+		if id == book.Id {
+			book.setStockCode(0)
+			data.Books = append(data.Books[:i], data.Books[i+1:]...)
+			data.Books = append(data.Books, book)
+			newData, err := json.Marshal(data)
+			if err != nil{
+				fmt.Println(err)
+			}
+			err = ioutil.WriteFile("books.json", newData, 0644)
+			if err != nil {
+				fmt.Println("Error: Couldn't write to file")
+			}
+			return fmt.Sprintf("%s has been remevod from the list", book.Title)
+		}
+	}
+	return "Given id is not valid"
+}
+
 func get(data Books, bookId string) string{
 	id, err := strconv.Atoi(bookId)
 	if err != nil {
@@ -59,6 +93,7 @@ func get(data Books, bookId string) string{
 	return "Given id is not valid"
 }
 
+// search function searches given string in the books and returns matched books
 func search(data Books, searchTerm string) string {
 	var foundBooks []string
 	for _, book := range data.Books {
@@ -74,8 +109,11 @@ func search(data Books, searchTerm string) string {
 	return "No books found"
 }
 
+// list function lists books in the Books struct
 func list(data Books) {
 	for i := 0; i < len(data.Books); i++ {
-		fmt.Println("Book #", i+1, "Title: "+data.Books[i].Title)
+		if data.Books[i].StockCode == 1 {
+			fmt.Printf("#%d Book: %s | Author: %s | Stock: %d \n", i+1,data.Books[i].Title, data.Books[i].Author, data.Books[i].Stock)
+		}
 	}
 }
