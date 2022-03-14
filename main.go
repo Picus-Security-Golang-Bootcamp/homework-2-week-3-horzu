@@ -14,14 +14,14 @@ type Books struct {
 }
 
 type Book struct {
-	Id        int    `json:"id"`
-	Title     string `json:"title"`
-	Page      int    `json:"page"`
-	Stock     int    `json:"stock"`
+	Id        int     `json:"id"`
+	Title     string  `json:"title"`
+	Page      int     `json:"page"`
+	Stock     int     `json:"stock"`
 	Price     float64 `json:"price"`
-	StockCode int    `json:"stockCode"`
-	Isbn      int    `json:"ISBN"`
-	Author    string `json:"author"`
+	StockCode int     `json:"stockCode"`
+	Isbn      int     `json:"ISBN"`
+	Author    string  `json:"author"`
 }
 
 func main() {
@@ -47,16 +47,50 @@ func main() {
 	case "delete":
 		bookId := os.Args[2]
 		fmt.Println(delete(data, bookId))
+	case "buy":
+		bookId := os.Args[2]
+		quantity := os.Args[3]
+		fmt.Println(buy(data, bookId, quantity))
 	}
 }
 
-func (b *Book) setStockCode(stockCode int) *Book {
-	b.StockCode = stockCode
-	return b
+func buy(data Books, bookId string, quantity string) string {
+	id, err := strconv.Atoi(bookId)
+	if err != nil {
+		return "String conversation error on bookID"
+	}
+	order, err := strconv.Atoi(quantity)
+	if err != nil {
+		return "String conversation error on order quantity"
+
+	}
+	for i, book := range data.Books {
+		if id == book.Id && book.Stock >= order && book.StockCode == 1 {
+			newQuantity := book.Stock - order
+			book.setStock(newQuantity)
+			data.Books = append(data.Books[:i], data.Books[i+1:]...)
+			data.Books = append(data.Books, book)
+			newData, err := json.Marshal(data)
+			if err != nil {
+				return "json converting error"
+			}
+			err = ioutil.WriteFile("books.json", newData, 0644)
+			if err != nil {
+				return "Error: Couldn't write to file"
+			}
+			return fmt.Sprintf("%+v\n", book)
+		} else if id == book.Id && book.Stock < order && book.StockCode == 1 {
+			fmt.Printf("Stock: %+v\n", book.Stock)
+			return "Not enough books in stock. Please order less"
+		} else if id == book.Id && book.Stock >= order && book.StockCode == 0 {
+			return "Book is not available for sale. Please try later"
+		}
+	}
+	return "Given id is not valid"
 }
 
-// delete function removes given book from the available items list. It sets StockCode to 0, which means book is not available.
-func delete(data Books, bookId string) string{
+// delete function removes given book from the available items list. It sets StockCode to 0, which means book is not available. Returns commands result as string.
+func delete(data Books, bookId string) string {
 	id, err := strconv.Atoi(bookId)
 	if err != nil {
 		return ("String conversation error!")
@@ -67,12 +101,12 @@ func delete(data Books, bookId string) string{
 			data.Books = append(data.Books[:i], data.Books[i+1:]...)
 			data.Books = append(data.Books, book)
 			newData, err := json.Marshal(data)
-			if err != nil{
-				fmt.Println(err)
+			if err != nil {
+				return "Error: Couldn't write to file"
 			}
 			err = ioutil.WriteFile("books.json", newData, 0644)
 			if err != nil {
-				fmt.Println("Error: Couldn't write to file")
+				return "Error: Couldn't write to file"
 			}
 			return fmt.Sprintf("%s has been remevod from the list", book.Title)
 		}
@@ -80,7 +114,7 @@ func delete(data Books, bookId string) string{
 	return "Given id is not valid"
 }
 
-func get(data Books, bookId string) string{
+func get(data Books, bookId string) string {
 	id, err := strconv.Atoi(bookId)
 	if err != nil {
 		return ("String conversation error!")
@@ -113,7 +147,17 @@ func search(data Books, searchTerm string) string {
 func list(data Books) {
 	for i := 0; i < len(data.Books); i++ {
 		if data.Books[i].StockCode == 1 {
-			fmt.Printf("#%d Book: %s | Author: %s | Stock: %d \n", i+1,data.Books[i].Title, data.Books[i].Author, data.Books[i].Stock)
+			fmt.Printf("#%d Book: %s | Author: %s | Stock: %d \n", i+1, data.Books[i].Title, data.Books[i].Author, data.Books[i].Stock)
 		}
 	}
+}
+
+func (b *Book) setStockCode(stockCode int) *Book {
+	b.StockCode = stockCode
+	return b
+}
+
+func (b *Book) setStock(stock int) *Book {
+	b.Stock = stock
+	return b
 }

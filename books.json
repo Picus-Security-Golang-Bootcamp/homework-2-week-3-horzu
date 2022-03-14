@@ -1,18 +1,1 @@
-{
-  "books": [
-    {
-      "id": 1,
-      "title": "Fairy tales",
-      "page": 784,
-      "stock": 235,
-      "price": 19.9,
-      "stockCode": 1,
-      "ISBN": 9781783938322,
-      "author": "1 - Hans Christian Andersen"
-    },
-    { "id": 2, "title": "The Divine Comedy", "page": 928, "stock": 300, "price": 29.9, "stockCode": 1, "ISBN": 9788889352311, "author": "2 - Dante Alighieri" },
-    { "id": 3, "title": "Pride and Prejudice", "page": 226, "stock": 125, "price": 14.9, "stockCode": 1, "ISBN": 9780192827609, "author": "3 - Jane Austen" },
-    { "id": 4, "title": "Le Père Goriot", "page": 443, "stock": 60, "price": 25, "stockCode": 1, "ISBN": 9780521327992, "author": "4 - Honoré de Balzac" },
-    { "id": 0, "title": "Things Fall Apart", "page": 209, "stock": 100, "price": 12.9, "stockCode": 0, "ISBN": 9780435272463, "author": "0 - Chinua Achebe" }
-  ]
-}
+{"books":[{"id":2,"title":"The Divine Comedy","page":928,"stock":300,"price":29.9,"stockCode":1,"ISBN":9788889352311,"author":"2 - Dante Alighieri"},{"id":3,"title":"Pride and Prejudice","page":226,"stock":125,"price":14.9,"stockCode":1,"ISBN":9780192827609,"author":"3 - Jane Austen"},{"id":4,"title":"Le Père Goriot","page":443,"stock":60,"price":25,"stockCode":1,"ISBN":9780521327992,"author":"4 - Honoré de Balzac"},{"id":0,"title":"Things Fall Apart","page":209,"stock":100,"price":12.9,"stockCode":0,"ISBN":9780435272463,"author":"0 - Chinua Achebe"},{"id":1,"title":"Fairy tales","page":784,"stock":35,"price":19.9,"stockCode":1,"ISBN":9781783938322,"author":"1 - Hans Christian Andersen"}]}
