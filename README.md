@@ -1,32 +1,45 @@
-# Homework | Week 3
+# CommandMe2 App
 
-`Not: Ödevi yeni bir repoya ekleyeceksiniz. Var olan reponuzda bir güncelleme olmayacak. "homework-2..." şeklinde yeni bir repo üzerinde çalışacaksınız.`
+A simple terminal app that executes given commands.
 
-Elimizde bir kitap listesi var.
-Kitap alanları şöyle;
+## Table of Contents
+
+* [Setup](#setup)
+* [Usage](#usage)
+* [Screenshots](#screenshots)
+* [Contact](#contact)
+* [License](#license)
+
+Concurrency Medium Link: [https://horzu.github.io/](https://horzu.github.io/)
+
+## Setup
+
+To run this project you must have Golang installed in your PC.
+
+## Usage
+
+We have a book list. It has fields as below:
 
 ```dash
-- Kitap ID
-- Kitap Adı
-- Sayfa Sayısı
-- Stok Sayısı
-- Fiyatı
-- Stock Kodu
+- Book ID
+- Book Title
+- Page Number
+- Stock Quantity
+- Price
+- Stock Code
 - ISBN
-- Yazar bilgisi (ID ve İsim)
+- Author Info (ID and Name)
 ```
 
-1. Tüm kitapları listele (list)
-2. Verilen girdi hangi kitap isimlerinde geçiyorsa o kitapları listele (search)
-3. ID'ye göre kitabı yazdır
-4. IDsi verilen kitabı sil. (Silinen kitabın ID'ye göre geliyor olması gerekiyor.)
-5. IDsi verilen kitabı istenilen adet kadar satın al ve kitabın son bilgilerini ekrana yazdır.
+There are 5 commands you can write after running the main.go file:
 
-Yanlış komut girildiğinde ekrana usage'ı yazdıracak.
+* list: Lists all books that system has.
+* search: Searches given book. If given book is in the list returns book's name, otherwise returns info about that book is not in the list.
+* get: Gets book information of given id.
+* delete: Sets stock of given id's book as 0. It will be not in the list but you can get the information of the book with get command.
+* buy: Buys given quantity of the given book and returns the new state of the book.
 
-Concurrency ile ilgili medium yazısı yazılacak.
-
-## list command
+### list command
 
 ```go
 go run main.go list
@@ -53,16 +66,22 @@ go run main.go delete <bookID>
 go run main.go delete 5
 ```
 
-### buy command
+## Screenshots
 
-```go
-go run main.go buy <bookID> <quantity>
-go run main.go buy 5 2
-```
+![Example screenshot1](./img/listCommand.png)
+![Example screenshot2](./img/searchCommand.png)
+![Example screenshot3](./img/searchCommand.png)
+![Example screenshot4](./img/searchCommand.png)
+![Example screenshot5](./img/searchCommand.png)
 
-### Requirements
+## Concurrency Medium Link
 
-- README
-- No third party package(s)
-- Everything should be in English (Comments, Function names, File names, etc.)
-- Use structs not maps
+[https://horzu.github.io/](https://horzu.github.io/)
+
+## Contact
+
+Created by [@horzu](https://horzu.github.io/) - feel free to contact me!
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
