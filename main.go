@@ -21,7 +21,12 @@ type Book struct {
 	Price     float64 `json:"price"`
 	StockCode string  `json:"stockCode"`
 	ISBN      string  `json:"ISBN"`
-	Author    string  `json:"author"`
+	Author    Authors  `json:"author"`
+}
+
+type Authors struct{
+	Id int 
+	Name string 
 }
 
 func main() {
@@ -80,9 +85,10 @@ func buy(data Books, bookId string, quantity string) string {
 	for i, book := range data.Books {
 		if id == book.Id && book.Stock >= order && book.Stock > 0 {
 			newQuantity := book.Stock - order
-			book.setStock(newQuantity)
-			data.Books = append(data.Books[:i], data.Books[i+1:]...)
-			data.Books = append(data.Books, book)
+			(&data.Books[i]).Stock = newQuantity
+			// book.setStock(newQuantity)
+			// data.Books = append(data.Books[:i], data.Books[i+1:]...)
+			// data.Books = append(data.Books, book)
 			newData, err := json.Marshal(data)
 			if err != nil {
 				return "json converting error"
@@ -159,7 +165,7 @@ func search(data Books, searchTerm string) string {
 func list(data Books) {
 	for i := 0; i < len(data.Books); i++ {
 		if data.Books[i].Stock > 0 {
-			fmt.Printf("Book ID: %d | Title: %s | Author: %s | Stock: %d \n", data.Books[i].Id, data.Books[i].Title, data.Books[i].Author, data.Books[i].Stock)
+			fmt.Printf("Book ID: %d | Title: %s | Author: %s | Stock: %d \n", data.Books[i].Id, data.Books[i].Title, data.Books[i].Author.Name, data.Books[i].Stock)
 		}
 	}
 }

@@ -1,1 +1,204 @@
-{"books":[{"id":3,"title":"Dog Nail Clipper (Koirankynnenleikkaaja)","page":707,"stock":274,"price":10.87,"stockCode":"63629-1454","ISBN":"665298017-7","author":"Michaela Frackiewicz"},{"id":4,"title":"Creature from the Haunted Sea","page":167,"stock":175,"price":77.83,"stockCode":"63629-1507","ISBN":"529067473-X","author":"Staci Ca"},{"id":5,"title":"Blackbird, The","page":409,"stock":288,"price":7.93,"stockCode":"63629-4137","ISBN":"212566197-7","author":"Constantin Walden"},{"id":6,"title":"Grumpy Cat's Worst Christmas Ever","page":879,"stock":292,"price":77.63,"stockCode":"0115-1473","ISBN":"370381877-8","author":"Carlos Nelthropp"},{"id":7,"title":"Bonfire of the Vanities","page":974,"stock":43,"price":96.95,"stockCode":"35356-398","ISBN":"486905221-0","author":"Meyer Barden"},{"id":8,"title":"Beyond the Rocks","page":997,"stock":21,"price":36.63,"stockCode":"60258-520","ISBN":"122643406-1","author":"Caroljean Alberti"},{"id":9,"title":"Pat and Mike","page":534,"stock":139,"price":95.34,"stockCode":"69243-0610","ISBN":"079225874-6","author":"Bradley Thomas"},{"id":11,"title":"Rouva presidentti","page":873,"stock":66,"price":15.08,"stockCode":"54868-5011","ISBN":"444955414-0","author":"Puff O'Fielly"},{"id":12,"title":"For Queen and Country","page":113,"stock":254,"price":61.57,"stockCode":"51143-124","ISBN":"513710565-1","author":"Hadrian Rizzello"},{"id":13,"title":"Outrage (Autoreiji)","page":236,"stock":21,"price":3.87,"stockCode":"52125-047","ISBN":"172125430-7","author":"Delcine Mussolini"},{"id":14,"title":"Treasure Island","page":950,"stock":451,"price":69.59,"stockCode":"48951-1226","ISBN":"089944647-7","author":"Hanni Kenwin"},{"id":15,"title":"Armstrong Lie, The","page":933,"stock":89,"price":42.87,"stockCode":"0025-1520","ISBN":"224836527-6","author":"Trenton Kaines"},{"id":16,"title":"Seas Beneath","page":235,"stock":18,"price":80.39,"stockCode":"63304-737","ISBN":"444317386-2","author":"Zsazsa Kier"},{"id":17,"title":"The Unexpected Love","page":279,"stock":212,"price":82.48,"stockCode":"49349-285","ISBN":"498483254-1","author":"Kip Simonassi"},{"id":18,"title":"Long Time Dead","page":283,"stock":189,"price":20.72,"stockCode":"52544-958","ISBN":"340403278-0","author":"Rosalia Grayston"},{"id":19,"title":"Beck - Rum 302","page":797,"stock":273,"price":71.21,"stockCode":"51918-1005","ISBN":"531137023-8","author":"Ernest Pottinger"},{"id":1,"title":"Blackout","page":66,"stock":0,"price":84.84,"stockCode":"17089-450","ISBN":"587540911-8","author":"Jade Adamsky"},{"id":2,"title":"Supercondriaque","page":701,"stock":0,"price":47.6,"stockCode":"33261-562","ISBN":"533716640-9","author":"Pamella Hradsky"},{"id":20,"title":"Columbus Circle","page":733,"stock":0,"price":73.33,"stockCode":"49349-666","ISBN":"253253420-6","author":"Rog Stilly"},{"id":10,"title":"Life Before Her Eyes, The","page":713,"stock":0,"price":69.06,"stockCode":"30142-074","ISBN":"033160319-5","author":"Kellsie Heasman"}]}
+{
+  "books": [
+    {
+      "Id": 1,
+      "Title": "Screaming Man, A (Un homme qui crie)",
+      "Page": 610,
+      "Stock": 347,
+      "Price": "$18.80",
+      "StockCode": "0093-5269",
+      "ISBN": "105257099-2",
+      "Author": { "Id": 1, "Name": "Stephannie Lathwell" }
+    },
+    {
+      "Id": 2,
+      "Title": "Chinese Coffee",
+      "Page": 243,
+      "Stock": 887,
+      "Price": "$34.46",
+      "StockCode": "0268-0711",
+      "ISBN": "196230402-7",
+      "Author": { "Id": 2, "Name": "Esther Goudie" }
+    },
+    {
+      "Id": 3,
+      "Title": "Decoder",
+      "Page": 268,
+      "Stock": 504,
+      "Price": "$53.02",
+      "StockCode": "13630-0023",
+      "ISBN": "393952971-0",
+      "Author": { "Id": 3, "Name": "Tim Michal" }
+    },
+    {
+      "Id": 4,
+      "Title": "The Hound of the Baskervilles",
+      "Page": 536,
+      "Stock": 355,
+      "Price": "$72.01",
+      "StockCode": "10819-7008",
+      "ISBN": "549398531-4",
+      "Author": { "Id": 4, "Name": "Joya Ugolini" }
+    },
+    {
+      "Id": 5,
+      "Title": "Desert Bloom",
+      "Page": 731,
+      "Stock": 954,
+      "Price": "$69.69",
+      "StockCode": "0406-9911",
+      "ISBN": "288065216-2",
+      "Author": { "Id": 5, "Name": "Francoise Pitford" }
+    },
+    {
+      "Id": 6,
+      "Title": "Cathedral, The (Katedra)",
+      "Page": 506,
+      "Stock": 717,
+      "Price": "$45.40",
+      "StockCode": "10812-869",
+      "ISBN": "264596420-6",
+      "Author": { "Id": 6, "Name": "Lesley Billo" }
+    },
+    {
+      "Id": 7,
+      "Title": "Internet's Own Boy: The Story of Aaron Swartz, The",
+      "Page": 666,
+      "Stock": 131,
+      "Price": "$67.68",
+      "StockCode": "16590-276",
+      "ISBN": "252878344-2",
+      "Author": { "Id": 7, "Name": "Karia Terrazzo" }
+    },
+    {
+      "Id": 8,
+      "Title": "Cool, Dry Place, A",
+      "Page": 156,
+      "Stock": 484,
+      "Price": "$48.66",
+      "StockCode": "16571-120",
+      "ISBN": "430230819-2",
+      "Author": { "Id": 8, "Name": "Simmonds Wolverson" }
+    },
+    {
+      "Id": 9,
+      "Title": "Bad Girls (Biches, Les)",
+      "Page": 154,
+      "Stock": 245,
+      "Price": "$80.68",
+      "StockCode": "0056-0174",
+      "ISBN": "115075226-2",
+      "Author": { "Id": 9, "Name": "Paule Dyott" }
+    },
+    {
+      "Id": 10,
+      "Title": "Dead Heat",
+      "Page": 711,
+      "Stock": 261,
+      "Price": "$76.69",
+      "StockCode": "65044-2014",
+      "ISBN": "498428475-7",
+      "Author": { "Id": 10, "Name": "Grethel Stranahan" }
+    },
+    {
+      "Id": 11,
+      "Title": "Alien Nation: Dark Horizon",
+      "Page": 589,
+      "Stock": 403,
+      "Price": "$50.47",
+      "StockCode": "28109-010",
+      "ISBN": "983532211-2",
+      "Author": { "Id": 11, "Name": "Constantina Buten" }
+    },
+    {
+      "Id": 12,
+      "Title": "Closing the Ring",
+      "Page": 739,
+      "Stock": 733,
+      "Price": "$44.80",
+      "StockCode": "0280-8080",
+      "ISBN": "476824555-2",
+      "Author": { "Id": 12, "Name": "Maure Colleck" }
+    },
+    {
+      "Id": 13,
+      "Title": "Ollin oppivuodet",
+      "Page": 729,
+      "Stock": 596,
+      "Price": "$47.89",
+      "StockCode": "0069-3150",
+      "ISBN": "516780511-2",
+      "Author": { "Id": 13, "Name": "Galvin Naton" }
+    },
+    {
+      "Id": 14,
+      "Title": "Meshes of the Afternoon",
+      "Page": 765,
+      "Stock": 190,
+      "Price": "$13.19",
+      "StockCode": "63029-010",
+      "ISBN": "858641770-X",
+      "Author": { "Id": 14, "Name": "Asa Slocum" }
+    },
+    {
+      "Id": 15,
+      "Title": "Evening",
+      "Page": 682,
+      "Stock": 332,
+      "Price": "$70.43",
+      "StockCode": "0168-0434",
+      "ISBN": "686962940-4",
+      "Author": { "Id": 15, "Name": "Tobias Berkeley" }
+    },
+    {
+      "Id": 16,
+      "Title": "Age of Consent",
+      "Page": 679,
+      "Stock": 108,
+      "Price": "$63.72",
+      "StockCode": "43742-0498",
+      "ISBN": "483226011-1",
+      "Author": { "Id": 16, "Name": "Nita Breadmore" }
+    },
+    {
+      "Id": 17,
+      "Title": "The Inhabited Island",
+      "Page": 204,
+      "Stock": 664,
+      "Price": "$33.40",
+      "StockCode": "54569-1411",
+      "ISBN": "264968355-4",
+      "Author": { "Id": 17, "Name": "Ola Marcinkowski" }
+    },
+    {
+      "Id": 18,
+      "Title": "Stevie",
+      "Page": 657,
+      "Stock": 623,
+      "Price": "$70.59",
+      "StockCode": "49738-374",
+      "ISBN": "245353544-7",
+      "Author": { "Id": 18, "Name": "Terrill Gregolin" }
+    },
+    {
+      "Id": 19,
+      "Title": "Dream Catcher, The",
+      "Page": 545,
+      "Stock": 157,
+      "Price": "$16.58",
+      "StockCode": "0409-7808",
+      "ISBN": "566742063-5",
+      "Author": { "Id": 19, "Name": "Elset Headley" }
+    },
+    {
+      "Id": 20,
+      "Title": "How to Train Your Dragon 2",
+      "Page": 461,
+      "Stock": 126,
+      "Price": "$52.78",
+      "StockCode": "59741-224",
+      "ISBN": "767822077-4",
+      "Author": { "Id": 20, "Name": "Claus Sowrah" }
+    }
+  ]
+}
