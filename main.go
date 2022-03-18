@@ -18,15 +18,15 @@ type Book struct {
 	Title     string  `json:"title"`
 	Page      int     `json:"page"`
 	Stock     int     `json:"stock"`
-	Price     string `json:"price"`
+	Price     string  `json:"price"`
 	StockCode string  `json:"stockCode"`
 	ISBN      string  `json:"ISBN"`
-	Author    Authors  `json:"author"`
+	Author    Authors `json:"author"`
 }
 
-type Authors struct{
-	Id int 
-	Name string 
+type Authors struct {
+	Id   int
+	Name string
 }
 
 func main() {
@@ -57,11 +57,14 @@ func main() {
 		quantity := os.Args[3]
 		fmt.Println(buy(data, bookId, quantity))
 	default:
-		fmt.Println("Entered command is not valid!")
+		if command != "usage" {
+			fmt.Println("Entered command is not valid!")
+		}
 		usage()
 	}
 }
 
+// usage function returns the usage of commands.
 func usage() {
 	fmt.Println("Usage:")
 	fmt.Println("list: Lists available books.")
@@ -71,11 +74,11 @@ func usage() {
 	fmt.Println("buy <bookID> <quantity>: Buys given quantity of the given book and returns the new state of the book.")
 }
 
-// buy function reduces the given book's stock quantity as given order quantity
+// buy function reduces the given book's stock quantity as given order quantity deducted from stock quantity
 func buy(data Books, bookId string, quantity string) string {
 	id, err := strconv.Atoi(bookId)
 	if err != nil {
-		return "String conversation error on bookID"
+		return "String conversation error on book ID"
 	}
 	order, err := strconv.Atoi(quantity)
 	if err != nil {
@@ -83,7 +86,7 @@ func buy(data Books, bookId string, quantity string) string {
 
 	}
 	for i, book := range data.Books {
-		if id == book.Id && book.Stock >= order && book.Stock > 0 {
+		if id == book.Id && book.Stock > 0 && book.Stock >= order {
 			newQuantity := book.Stock - order
 			data.Books[i].setStock(newQuantity)
 			newData, err := json.Marshal(data)
@@ -98,8 +101,8 @@ func buy(data Books, bookId string, quantity string) string {
 			return fmt.Sprintf("%+v", strings.Join(strings.Split(bookInfo[1:len(bookInfo)-1], " "), " "))
 		} else if id == book.Id && book.Stock < order && book.Stock > 0 {
 			fmt.Printf("Stock: %+v\n", book.Stock)
-			return "Not enough books in stock. Please order less"
-		} else if id == book.Id && book.Stock >= order && book.Stock == 0 {
+			return "Not enough books in stock."
+		} else if id == book.Id && book.Stock == 0 {
 			return "Book is not available for sale. Please try later"
 		}
 	}
@@ -114,10 +117,13 @@ func delete(data Books, bookId string) string {
 	}
 	for i, book := range data.Books {
 		if id == book.Id {
+			if book.Stock == 0 {
+				return "Book is already unavailable"
+			}
 			data.Books[i].setStock(0)
 			newData, err := json.Marshal(data)
 			if err != nil {
-				return "Error: Couldn't write to file"
+				return "Error: Couldn't convert data to the json file"
 			}
 			err = ioutil.WriteFile("books.json", newData, 0644)
 			if err != nil {
@@ -129,6 +135,7 @@ func delete(data Books, bookId string) string {
 	return "Given id is not valid"
 }
 
+// get function returns information of the book of given id
 func get(data Books, bookId string) string {
 	id, err := strconv.Atoi(bookId)
 	if err != nil {
@@ -136,18 +143,23 @@ func get(data Books, bookId string) string {
 	}
 	for _, book := range data.Books {
 		if id == book.Id {
-			return book.Title
+			bookInfo := fmt.Sprintf("Book ID: %d | Title: %s | Author: %s | Stock: %d | Price: %s", book.Id, book.Title, book.Author.Name, book.Stock, book.Price)
+			return bookInfo
 		}
 	}
-	return "Given id is not valid"
+	return "Book with the given id is not available"
 }
 
 // search function searches given string in the books and returns matched books
 func search(data Books, searchTerm string) string {
+	if searchTerm == "" {
+		return "No search parameter entered"
+	}
 	var foundBooks []string
 	for _, book := range data.Books {
 		if strings.Contains(strings.ToLower(book.Title), strings.ToLower(searchTerm)) && book.Stock > 0 {
-			foundBooks = append(foundBooks, book.Title)
+			bookInfo := fmt.Sprintf("Book ID: %d | Title: %s | Author: %s | Stock: %d | Price: %s", book.Id, book.Title, book.Author.Name, book.Stock, book.Price)
+			foundBooks = append(foundBooks, bookInfo)
 		}
 	}
 	if len(foundBooks) > 0 {
@@ -156,11 +168,12 @@ func search(data Books, searchTerm string) string {
 	return "No books found"
 }
 
-// list function lists books in the Books struct
+// list function lists books in the list
 func list(data Books) {
 	for i := 0; i < len(data.Books); i++ {
 		if data.Books[i].Stock > 0 {
-			fmt.Printf("Book ID: %d | Title: %s | Author: %s | Stock: %d \n", data.Books[i].Id, data.Books[i].Title, data.Books[i].Author.Name, data.Books[i].Stock)
+			bookInfo := fmt.Sprintf("Book ID: %d | Title: %s | Author: %s | Stock: %d | Price: %s \n", data.Books[i].Id, data.Books[i].Title, data.Books[i].Author.Name, data.Books[i].Stock, data.Books[i].Price)
+			fmt.Printf(bookInfo)
 		}
 	}
 }
