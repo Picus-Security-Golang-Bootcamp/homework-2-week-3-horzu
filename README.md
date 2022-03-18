@@ -68,11 +68,40 @@ go run main.go delete 5
 
 ## Screenshots
 
-![Example screenshot1](./img/listCommand.png)
-![Example screenshot2](./img/searchCommand.png)
-![Example screenshot3](./img/searchCommand.png)
-![Example screenshot4](./img/searchCommand.png)
-![Example screenshot5](./img/searchCommand.png)
+* "list" command
+![Example screenshot1](./screenshots/listCommand.png)
+
+---
+
+* "search" command
+![Example screenshot1](./screenshots/searchCommand.gif)
+
+---
+
+* "get" command
+![Example screenshot1](./screenshots/getCommand.gif)
+
+---
+
+* "delete" command
+![Example screenshot1](./screenshots/deleteCommand.gif)
+
+---
+
+* "buy" command
+![Example screenshot1](./screenshots/buyCommand.gif)
+
+---
+
+* "usage" command
+![Example screenshot1](./screenshots/usageCommand.gif)
+
+---
+
+* invalid commands
+![Example screenshot1](./screenshots/invalidCommand.gif)
+
+---
 
 ## Contact
 
