@@ -10,7 +10,7 @@ A simple terminal app that executes given commands.
 * [Contact](#contact)
 * [License](#license)
 
-Concurrency Medium Link: [https://horzu.github.io/](https://horzu.github.io/)
+Concurrency Medium Link: [Concurrentcy in Golang](https://medium.com/@mertakar_22051/concurrency-in-golang-d49d2db1ed91)
 
 ## Setup
 
@@ -73,10 +73,6 @@ go run main.go delete 5
 ![Example screenshot3](./img/searchCommand.png)
 ![Example screenshot4](./img/searchCommand.png)
 ![Example screenshot5](./img/searchCommand.png)
-
-## Concurrency Medium Link
-
-[https://horzu.github.io/](https://horzu.github.io/)
 
 ## Contact
 

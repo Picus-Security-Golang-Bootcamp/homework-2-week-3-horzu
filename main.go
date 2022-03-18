@@ -9,10 +9,12 @@ import (
 	"strings"
 )
 
+// Books represents a slice of Book
 type Books struct {
 	Books []Book `json:"books"`
 }
 
+// A Book represents an example of Book.
 type Book struct {
 	Id        int     `json:"id"`
 	Title     string  `json:"title"`
@@ -27,6 +29,11 @@ type Book struct {
 type Authors struct {
 	Id   int
 	Name string
+}
+
+func (b *Book) setStock(stock int) *Book {
+	b.Stock = stock
+	return b
 }
 
 func main() {
@@ -176,9 +183,4 @@ func list(data Books) {
 			fmt.Printf(bookInfo)
 		}
 	}
-}
-
-func (b *Book) setStock(stock int) *Book {
-	b.Stock = stock
-	return b
 }
