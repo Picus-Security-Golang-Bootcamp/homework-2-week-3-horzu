@@ -18,7 +18,7 @@ type Book struct {
 	Title     string  `json:"title"`
 	Page      int     `json:"page"`
 	Stock     int     `json:"stock"`
-	Price     float64 `json:"price"`
+	Price     string `json:"price"`
 	StockCode string  `json:"stockCode"`
 	ISBN      string  `json:"ISBN"`
 	Author    Authors  `json:"author"`
@@ -85,10 +85,7 @@ func buy(data Books, bookId string, quantity string) string {
 	for i, book := range data.Books {
 		if id == book.Id && book.Stock >= order && book.Stock > 0 {
 			newQuantity := book.Stock - order
-			(&data.Books[i]).Stock = newQuantity
-			// book.setStock(newQuantity)
-			// data.Books = append(data.Books[:i], data.Books[i+1:]...)
-			// data.Books = append(data.Books, book)
+			data.Books[i].setStock(newQuantity)
 			newData, err := json.Marshal(data)
 			if err != nil {
 				return "json converting error"
@@ -97,7 +94,7 @@ func buy(data Books, bookId string, quantity string) string {
 			if err != nil {
 				return "Error: Couldn't write to file"
 			}
-			bookInfo := fmt.Sprintf("%+v", book)
+			bookInfo := fmt.Sprintf("%+v", data.Books[i])
 			return fmt.Sprintf("%+v", strings.Join(strings.Split(bookInfo[1:len(bookInfo)-1], " "), " "))
 		} else if id == book.Id && book.Stock < order && book.Stock > 0 {
 			fmt.Printf("Stock: %+v\n", book.Stock)
@@ -117,9 +114,7 @@ func delete(data Books, bookId string) string {
 	}
 	for i, book := range data.Books {
 		if id == book.Id {
-			book.setStock(0)
-			data.Books = append(data.Books[:i], data.Books[i+1:]...)
-			data.Books = append(data.Books, book)
+			data.Books[i].setStock(0)
 			newData, err := json.Marshal(data)
 			if err != nil {
 				return "Error: Couldn't write to file"
