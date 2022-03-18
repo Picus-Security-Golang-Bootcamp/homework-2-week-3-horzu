@@ -150,6 +150,9 @@ func get(data Books, bookId string) string {
 	}
 	for _, book := range data.Books {
 		if id == book.Id {
+			if book.Stock == 0{
+				fmt.Println("Entered book is in the list but it is not on stock.")
+			}
 			bookInfo := fmt.Sprintf("Book ID: %d | Title: %s | Author: %s | Stock: %d | Price: %s", book.Id, book.Title, book.Author.Name, book.Stock, book.Price)
 			return bookInfo
 		}
