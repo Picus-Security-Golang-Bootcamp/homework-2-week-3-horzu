@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -46,55 +47,48 @@ func main() {
 	data := Books{}
 	json.Unmarshal(values, &data)
 
-	command := os.Args[1]
-	switch command {
-	case "list":
-		list(data)
-	case "search":
-		searchTerm := strings.Join(os.Args[2:], " ")
-		fmt.Println(search(data, searchTerm))
-	case "get":
-		searchedBookId := os.Args[2]
-		fmt.Println(get(data, searchedBookId))
-	case "delete":
-		bookId := os.Args[2]
-		fmt.Println(delete(data, bookId))
-	case "buy":
-		bookId := os.Args[2]
-		quantity := os.Args[3]
-		fmt.Println(buy(data, bookId, quantity))
-	default:
-		if command != "usage" {
-			fmt.Println("Entered command is not valid!")
-		}
-		usage()
-	}
-}
+	listPtr := flag.Bool("list", false, "no argument needed.")
+	searchPtr := flag.String("search", "", "a string value to search in the books list")
+	getPtr := flag.Int("get", 0, "an int value to get a book from its id number")
+	deletePtr := flag.Int("delete", 0, "an int value of book id to set stocks of the given book as 0")
+	buyPtr := flag.Int("buy", 0, "an int value to buy a book from its id number, following by an int value as order quantity.")
 
-// usage function returns the usage of commands.
-func usage() {
-	fmt.Println("Usage:")
-	fmt.Println("list: Lists available books.")
-	fmt.Println("search <bookName>: Searches given string in the available books.")
-	fmt.Println("get <bookID>: Gets book information of given id.")
-	fmt.Println("delete <bookID>: Sets stock of given id's book as 0. It will be not in the list but you can get the information of the book with get command.")
-	fmt.Println("buy <bookID> <quantity>: Buys given quantity of the given book and returns the new state of the book.")
+	var usage = `Usage of C:\Users\merts\AppData\Local\Temp\go-build849867169\b001\exe\main.exe:
+	Options:
+	-get Number of workers to run concurrently. Default is 10.
+	-search  Timeout for each request in seconds. Default is 30.
+	-get  Timeout for each request in seconds. Default is 30.
+	-delete  Timeout for each request in seconds. Default is 30.
+	-buy  Timeout for each request in seconds. Default is 30.
+`
+	flag.Usage = func() {
+		fmt.Fprint(os.Stderr, fmt.Sprintf(usage))
+	}
+	flag.Parse()
+
+	switch  {
+	case *listPtr :
+		list(data)
+	case len(*searchPtr) > 0:
+		fmt.Println(search(data, *searchPtr))
+	case *getPtr > 0:
+		fmt.Println(get(data, *getPtr))
+	case *deletePtr>0:
+		fmt.Println(delete(data, *deletePtr))
+	case *buyPtr>0:
+		quantity, err := strconv.Atoi(flag.Args()[0])
+		if err != nil{
+			fmt.Println("String conversation error!")
+		}
+		fmt.Println(buy(data, *buyPtr, quantity))
+	}
 }
 
 // buy function reduces the given book's stock quantity as given order quantity deducted from stock quantity
-func buy(data Books, bookId string, quantity string) string {
-	id, err := strconv.Atoi(bookId)
-	if err != nil {
-		return "String conversation error on book ID"
-	}
-	order, err := strconv.Atoi(quantity)
-	if err != nil {
-		return "String conversation error on order quantity"
-
-	}
-	for i, book := range data.Books {
-		if id == book.Id && book.Stock > 0 && book.Stock >= order {
-			newQuantity := book.Stock - order
+func buy(data Books, bookId int, quantity int) string {
+		for i, book := range data.Books {
+		if bookId == book.Id && book.Stock > 0 && book.Stock >= quantity {
+			newQuantity := book.Stock - quantity
 			data.Books[i].setStock(newQuantity)
 			newData, err := json.Marshal(data)
 			if err != nil {
@@ -106,10 +100,10 @@ func buy(data Books, bookId string, quantity string) string {
 			}
 			bookInfo := fmt.Sprintf("%+v", data.Books[i])
 			return fmt.Sprintf("%+v", strings.Join(strings.Split(bookInfo[1:len(bookInfo)-1], " "), " "))
-		} else if id == book.Id && book.Stock < order && book.Stock > 0 {
+		} else if bookId == book.Id && book.Stock < quantity && book.Stock > 0 {
 			fmt.Printf("Stock: %+v\n", book.Stock)
 			return "Not enough books in stock."
-		} else if id == book.Id && book.Stock == 0 {
+		} else if bookId == book.Id && book.Stock == 0 {
 			return "Book is not available for sale. Please try later"
 		}
 	}
@@ -117,13 +111,9 @@ func buy(data Books, bookId string, quantity string) string {
 }
 
 // delete function removes given book from the available items list. It sets StockCode to 0, which means book is not available. Returns commands result as string.
-func delete(data Books, bookId string) string {
-	id, err := strconv.Atoi(bookId)
-	if err != nil {
-		return ("String conversation error!")
-	}
+func delete(data Books, bookId int) string {
 	for i, book := range data.Books {
-		if id == book.Id {
+		if bookId == book.Id {
 			if book.Stock == 0 {
 				return "Book is already unavailable"
 			}
@@ -143,13 +133,9 @@ func delete(data Books, bookId string) string {
 }
 
 // get function returns information of the book of given id
-func get(data Books, bookId string) string {
-	id, err := strconv.Atoi(bookId)
-	if err != nil {
-		return ("String conversation error!")
-	}
+func get(data Books, bookId int) string {
 	for _, book := range data.Books {
-		if id == book.Id {
+		if bookId == book.Id {
 			if book.Stock == 0{
 				fmt.Println("Entered book is in the list but it is not on stock.")
 			}
