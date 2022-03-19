@@ -53,17 +53,6 @@ func main() {
 	deletePtr := flag.Int("delete", 0, "an int value of book id to set stocks of the given book as 0")
 	buyPtr := flag.Int("buy", 0, "an int value to buy a book from its id number, following by an int value as order quantity.")
 
-	var usage = `Usage of C:\Users\merts\AppData\Local\Temp\go-build849867169\b001\exe\main.exe:
-	Options:
-	-get Number of workers to run concurrently. Default is 10.
-	-search  Timeout for each request in seconds. Default is 30.
-	-get  Timeout for each request in seconds. Default is 30.
-	-delete  Timeout for each request in seconds. Default is 30.
-	-buy  Timeout for each request in seconds. Default is 30.
-`
-	flag.Usage = func() {
-		fmt.Fprint(os.Stderr, fmt.Sprintf(usage))
-	}
 	flag.Parse()
 
 	switch  {

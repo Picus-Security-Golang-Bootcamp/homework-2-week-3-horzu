@@ -42,64 +42,61 @@ There are 5 commands you can write after running the main.go file:
 ### list command
 
 ```go
-go run main.go list
+go run main.go -list
 ```
 
 ### search command
 
 ```go
-go run main.go search <bookName>
-go run main.go search Lord of the Ring: The Return of the King
+go run main.go -search <bookName>
+go run main.go -search Lord
 ```
 
 ### get command
 
 ```go
-go run main.go get <bookID>
-go run main.go get 5
+go run main.go -get <bookID>
+go run main.go -get 5
 ```
 
 ### delete command
 
 ```go
-go run main.go delete <bookID>
-go run main.go delete 5
+go run main.go -delete <bookID>
+go run main.go -delete 5
+```
+
+### buy command
+
+```go
+go run main.go -buy <bookID> <quantity>
+go run main.go -buy 5 10
 ```
 
 ## Screenshots
 
-* "list" command
+* "-list" command
 ![Example screenshot1](./screenshots/listCommand.png)
 
 ---
 
-* "search" command
+* "-search" command
 ![Example screenshot1](./screenshots/searchCommand.gif)
 
 ---
 
-* "get" command
+* "-get" command
 ![Example screenshot1](./screenshots/getCommand.gif)
 
 ---
 
-* "delete" command
+* "-delete" command
 ![Example screenshot1](./screenshots/deleteCommand.gif)
 
 ---
 
-* "buy" command
+* "-buy" command
 ![Example screenshot1](./screenshots/buyCommand.gif)
-
----
-
-* "usage" command
-![Example screenshot1](./screenshots/usageCommand.gif)
-
----
-
-* invalid commands
-![Example screenshot1](./screenshots/invalidCommand.gif)
 
 ---
 
